@@ -64,9 +64,8 @@ function moveGhost(ghost_type_id, ghost_instance_id){
     }
 }
 
-var users = [];
-
-var leaderboard = [];
+//map to store the users
+var myMap = new Map();
 
 // handle requests & responses
 function handleRequest(request, response){
@@ -83,8 +82,24 @@ function handleRequest(request, response){
 // for all your static (js/css/images/etc.) set the directory name (relative path).
 dispatcher.setStatic('resources');
 
+//call this to add a user
 dispatcher.onPost("/addUser", function(req, res){
-    req.name
+    myMap.set(req.name, 0); //add pair <name, 0> to the map
+    res.end(req.name + " successfully added with 0 ghosts caught");
+});
+
+//call this to indicate a ghost caught
+dispatcher.onPost("/catchGhost", function(req, res){
+    var ghostCatcherName = req.name;
+    var currentGhostCatcherPower = myMap.get(ghostCatcherName);
+    var ghostCaught = req.ghostName;
+
+    for(var ghost in ghosts){
+        if(ghost.name === ghostCaught) {
+            myMap.set(ghostCatcherName, ghost.power + currentGhostCatcherPower);
+            break;
+        }
+    }
 });
 
 // a sample GET request
