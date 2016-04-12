@@ -1,7 +1,7 @@
 var http = require('http');
 var dispatcher = require('httpdispatcher');
 
-const PORT=8080;
+const PORT=80;
 
 var milesPerDegreeLatitudeInFeet = 364560;
 //how far to move the ghost in feet upon failed capture
@@ -11,6 +11,7 @@ var constB = 2640, constA = 500;
 function feetToDMSLatitude(feet){ return feet/milesPerDegreeLatitudeInFeet; }
 function latitudeToFeet(latitudeInDMS){ return latitudeInDMS * milesPerDegreeLatitudeInFeet; }
 
+//array that contains all of the ghost types and info
 var ghostTypes = [
     {name: "Smitty Werbenmanjensen", type_id: 996, power: 100, flavor_text: "He was number 1", catch_rate: 10},
     {name: "Copyright Infringement", type_id: 997, power: 90, flavor_text: "It's GENGAaah, never mind", catch_rate: 20},
@@ -26,6 +27,7 @@ var ghostTypes = [
     {name: "Route 66 Roadkill", type_id: 1006, power: 1, flavor_text: "Flatter than the Arizona desert and just as dehydrated.", catch_rate: 100}
 ];
 
+//initial array of ghosts
 var ghosts = [
     {type_id: 996, instance_id: 555, owner_id: undefined, location_x: 555.5555555, location_y: 555.5555555},
     {type_id: 997, instance_id: 556, owner_id: undefined, location_x: 555.5555555, location_y: 555.5555555},
@@ -34,7 +36,6 @@ var ghosts = [
 ];
 
 var userLastKnownLocations = [
-    {location_x: 555.5555555, location_y: 555.5555555}
 ];
 
 //return a random ghost to spawn
@@ -42,15 +43,20 @@ function randomGhost(){
     return ghostTypes[(Math.random() * (ghostTypes.length - 1) + 1)];
 }
 
+//this function moves around the ghosts
 function generate() {
     for (var ghost in ghosts){
         if(ghost.owner_id !== undefined){
             ghost = {};
         }
+        else{
+            moveGhost(ghost.type_id, ghost.instance_id);
+        }
     }
     for (var loc in userLastKnownLocations){
-        randomGhost();
-        ghosts.push({})
+        var ghostTyp = randomGhost(); //generate a random ghost type
+        ghosts.push();
+        moveGhost(ghost_type_id, ghost_instance_id)
     }
 }
 
