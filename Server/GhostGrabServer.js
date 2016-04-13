@@ -101,7 +101,7 @@ dispatcher.onPost("/addUser", function(req, res){
     myMap.forEach(function(value, key) {
   		console.log(key + " = " + value);
 	}, myMap)
-    res.end(req.body.name + " successfully added with 0 ghosts caught." + req + " " + req.body);
+    res.end(req.body.name + " successfully added with 0 ghosts caught." + req + "" + req.body);
 });
 
 //call this to indicate a ghost caught
