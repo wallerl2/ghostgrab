@@ -115,7 +115,6 @@ dispatcher.onPost("/catchGhost", function(req, res){
 
 // a sample GET request
 dispatcher.onGet("/reset", function(req, res) {
->>>>>>> origin/master
     res.writeHead(200, {'Content-Type': 'text/plain'});
     res.end('Wow it actually works.');
 });
