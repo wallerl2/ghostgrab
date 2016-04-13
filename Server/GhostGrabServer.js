@@ -16,7 +16,7 @@ function latitudeToFeet(latitudeInDMS){ return latitudeInDMS * milesPerDegreeLat
 //array that contains all of the ghost types and info
 var ghostTypes = [
     {name: "Smitty Werbenmanjensen", type_id: 996, power: 100, flavor_text: "He was number 1", catch_rate: 10},
-    {name: "Copyright Infringement", type_id: 997, power: 90, flavor_text: "It's GENGAaah, never mind", catch_rate: 20},
+    {name: "Copyright Infringement", type_id: 997, power: 90, flavor_text: "This ghost has been removed at the request of the copyright holder", catch_rate: 20},
     {name: "John Cena-fterlife", type_id: 998, power: 80, flavor_text: "Da dah dawh dah!!!", catch_rate: 30},
     {name: "Oozi", type_id: 999, power: 70, flavor_text: "His 9x19mm parabellum slime is sure to ruin your day", catch_rate: 40},
     {name: "Haunt Solo", type_id: 1000, power: 60, flavor_text: "Spoiler Alert...he's dead.", catch_rate: 50},
@@ -26,7 +26,12 @@ var ghostTypes = [
     {name: "Windows ME", type_id: 1004, power: 20, flavor_text: "Rest in peace.", catch_rate: 90},
     {name: "Livingstone's Reanimated Corpse", type_id: 1005, power: 10, flavor_text: "Dr. Livingstone's bones, I presume?", catch_rate: 95},
     {name: "Last Night's Leftovers", type_id: 1006, power: 5, flavor_text: "This gruel is grueling.", catch_rate: 99},
-    {name: "Route 66 Roadkill", type_id: 1006, power: 1, flavor_text: "Flatter than the Arizona desert and just as dehydrated.", catch_rate: 100}
+    {name: "Route 66 Roadkill", type_id: 1006, power: 1, flavor_text: "Flatter than the Arizona desert and just as dehydrated.", catch_rate: 100},
+    {name: "Inhuman Torch", type_id: 1007, power: 60, flavor_text: "Flame oooohaaaaahhhnn", catch_rate: 60},
+    {name: "Roller Ghost-er", type_id: 1008, power: 50, flavor_text: "Frightfully exciting", catch_rate: 40},
+    {name: "Terror-dactyl", type_id: 1009, power: 90, flavor_text: "Death from above", catch_rate: 20},
+    {name: "Boo-ster Shot", type_id: 1010, power: 30, flavor_text: "The Teta-next Level of Terror", catch_rate: 60},
+    {name: "Dreaded Wheat", type_id: 1011, power: 20, flavor_text: "A flavorless cereal that scrubs your GI tract", catch_rate: 70},
 ];
 
 //initial array of ghosts
@@ -124,6 +129,11 @@ dispatcher.onGet("/reset", function(req, res) {
     res.end('Wow it actually works.');
 });
 
+//invoke this post to get an array of the current ghost locations
+dispatcher.onGet("/getUpdatedGhostLocations", function(req, res){
+    res.end(ghosts);
+});
+
 // add a ghost
 dispatcher.onPost("/add", function(req, res) {
     ghosts.push(req.body);
@@ -139,7 +149,6 @@ dispatcher.onPost("/remove", function(req, res) {
             ghosts[i].pop();
         }
     }
-
     res.writeHead(200, {'Content-Type': 'text/plain'});
     res.end('Got Post Data');
 });
@@ -156,7 +165,7 @@ dispatcher.onPost("/move", function(req, res) {
 });
 
 // update leaderboard
-dispatcher.onPost("/update", function(req, res) {
+dispatcher.onPost("/updateLeaderboard", function(req, res) {
     for (var i = 0; i < leaderboard.length; ++i) {
         if(leaderboard[i] === req.body.owner_id) {
             leaderboard[i].score = req.body.score;
