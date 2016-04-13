@@ -1,7 +1,7 @@
 var http = require('http');
 var dispatcher = require('httpdispatcher');
 
-const PORT=80;
+const PORT=8080;
 
 var milesPerDegreeLatitudeInFeet = 364560;
 //how far to move the ghost in feet upon failed capture
