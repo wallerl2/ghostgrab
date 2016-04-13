@@ -98,7 +98,10 @@ dispatcher.onGet("/test", function(req, res) {
 //call this to add a user
 dispatcher.onPost("/addUser", function(req, res){
     myMap.set(req.name, 0); //add pair <name, 0> to the map
-    res.end(req.name + " successfully added with 0 ghosts caught");
+    myMap.forEach(function(value, key) {
+  		console.log(key + " = " + value);
+	}, myMap)
+    res.end(req.name + " successfully added with 0 ghosts caught.");
 });
 
 //call this to indicate a ghost caught
