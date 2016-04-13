@@ -1,7 +1,9 @@
+"use strict"
+
 var http = require('http');
 var dispatcher = require('httpdispatcher');
 
-const PORT=8080;
+const PORT=5001;
 
 var milesPerDegreeLatitudeInFeet = 364560;
 //how far to move the ghost in feet upon failed capture
@@ -167,5 +169,5 @@ var server = http.createServer(handleRequest);
 
 // start the server
 server.listen(PORT, function(){
-    console.log("Server listening...");
+    console.log("Server listening on PORT: " + PORT);
 });
