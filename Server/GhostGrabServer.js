@@ -88,10 +88,11 @@ function handleRequest(request, response){
 // for all your static (js/css/images/etc.) set the directory name (relative path).
 dispatcher.setStatic('resources');
 
-<<<<<<< HEAD
 // test server
 dispatcher.onGet("/test", function(req, res) {
-=======
+	res.end("wow it works!");
+});
+
 //call this to add a user
 dispatcher.onPost("/addUser", function(req, res){
     myMap.set(req.name, 0); //add pair <name, 0> to the map
