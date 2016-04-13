@@ -53,10 +53,10 @@ function handleRequest(request, response){
 // for all your static (js/css/images/etc.) set the directory name (relative path).
 dispatcher.setStatic('resources');
 
-// a sample GET request
-dispatcher.onGet("/reset", function(req, res) {
+// test server
+dispatcher.onGet("/test", function(req, res) {
     res.writeHead(200, {'Content-Type': 'text/plain'});
-    res.end('Page One');
+    res.end('Wow it actually works.');
 });
 
 // add a ghost
