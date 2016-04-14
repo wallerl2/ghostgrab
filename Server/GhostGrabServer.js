@@ -158,12 +158,10 @@ dispatcher.onPost("/move", function(req, res) {
 // update leaderboard
 dispatcher.onPost("/updateLeaderboard", function(req, res) {
     for (var i = 0; i < leaderboard.length; ++i) {
-        if(leaderboard[i] === req.body.owner_id) {
-            leaderboard[i].score = req.body.score;
+        if(leaderboard[i] === JSON.parse(req.body).owner_id) {
+            leaderboard[i].score = JSON.parse(req.body).score;
         }
     }
-
-    res.writeHead(200, {'Content-Type': 'text/plain'});
     res.end('Got Post Data');
 });
 
