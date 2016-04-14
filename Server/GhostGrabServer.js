@@ -6,6 +6,7 @@ var dispatcher = require('httpdispatcher');
 const PORT=5001;
 
 var milesPerDegreeLatitudeInFeet = 364560;
+
 //how far to move the ghost in feet upon failed capture
 var constB = 2640, constA = 500;
 
@@ -95,13 +96,8 @@ function handleRequest(request, response){
 // for all your static (js/css/images/etc.) set the directory name (relative path).
 dispatcher.setStatic('resources');
 
-// test server
-dispatcher.onGet("/test", function(req, res) {
-	res.end("wow it works!");
-});
-
 //call this to add a user
-dispatcher.onPost("/addUser", function(req, res){
+dispatcher.onPost("/adduser", function(req, res){
     myMap.set(JSON.parse(req.body).name, 0); //add pair <name, 0> to the map
     myMap.forEach(function(value, key) {
   		console.log(key + " = " + value);
@@ -110,10 +106,10 @@ dispatcher.onPost("/addUser", function(req, res){
 });
 
 //call this to indicate a ghost caught
-dispatcher.onPost("/catchGhost", function(req, res){
-    var ghostCatcherName = req.name;
+dispatcher.onPost("/catchghost", function(req, res){
+    var ghostCatcherName = JSON.parse(req.body).name;
     var currentGhostCatcherPower = myMap.get(ghostCatcherName);
-    var ghostCaught = req.ghostName;
+    var ghostCaught = JSON.parse(req.body).ghostName;
 
     for(var ghost in ghosts){
         if(ghost.name === ghostCaught) {
@@ -123,16 +119,11 @@ dispatcher.onPost("/catchGhost", function(req, res){
     }
 });
 
-// a sample GET request
-dispatcher.onGet("/reset", function(req, res) {
-    res.writeHead(200, {'Content-Type': 'text/plain'});
-    res.end('Wow it actually works.');
+//invoke this post to get an array of the current ghost locations
+dispatcher.onGet("/getupdatedghostlocations", function(req, res){
+    res.end(ghosts.toString());
 });
 
-//invoke this post to get an array of the current ghost locations
-dispatcher.onGet("/getUpdatedGhostLocations", function(req, res){
-    res.end(ghosts);
-});
 
 // add a ghost
 dispatcher.onPost("/add", function(req, res) {
