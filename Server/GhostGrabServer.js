@@ -160,12 +160,12 @@ dispatcher.onPost("/updateleaderboard", function(req, res) {
 
     var topTenNamesAndScores = [];
 
-    for(var key in myMap){
-        topTenNamesAndScores.push([key, myMap.get(key)]);
-        topTenNamesAndScores.sort(function(a, b){
-            return (b[1] - a[1]);
-        });
-    }
+    myMap.forEach(function(value, key){
+        topTenNamesAndScores.push([value,key]);
+    })
+    topTenNamesAndScores.sort();
+    topTenNamesAndScores.slice(0,10);
+
     res.end(JSON.stringify(topTenNamesAndScores.slice(0,9)));
     res.end('Got Post Data');
 });
