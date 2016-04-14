@@ -45,14 +45,28 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\CookieJar.cs" />
+     <Compile Include="Assets\DiskCache.cs" />
+     <Compile Include="Assets\FormDataStream.cs" />
      <Compile Include="Assets\GhostDetected.cs" />
      <Compile Include="Assets\GhostDex.cs" />
+     <Compile Include="Assets\JSON.cs" />
+     <Compile Include="Assets\JSONObject.cs" />
      <Compile Include="Assets\LocationTest.cs" />
+     <Compile Include="Assets\Request.cs" />
+     <Compile Include="Assets\Response.cs" />
+     <Compile Include="Assets\ResponseCallbackDispatcher.cs" />
+     <Compile Include="Assets\StreamedWWWForm.cs" />
+     <Compile Include="Assets\WebRequest.cs" />
+     <Compile Include="Assets\sendname.cs" />
  <Reference Include="UnityEngine.Networking">
  <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/Networking/UnityEngine.Networking.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.UI">
  <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
+ </Reference>
+ <Reference Include="Ionic.Zlib.CF">
+ <HintPath>/Users/Dev/ghostgrab/Ghostbusters/Ghostbusters/Assets/Ionic.Zlib.CF.dll</HintPath>
  </Reference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

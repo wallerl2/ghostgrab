@@ -9,7 +9,7 @@ public class sendname : MonoBehaviour {
 	void Start () {
         var postScoreURL = "ghostgrab.ddns.net:5001/addUser";
         var jsonString = "{ 'name' : 'test' }";
-
+		/////////////////////////////////////////////////////////////////!!!!!!replace with input name
 
         // StartCoroutine(GetText());
         //Hashtable data = new Hashtable();
@@ -17,8 +17,8 @@ public class sendname : MonoBehaviour {
 
         data.AddField("name", "Test");
 
-       HTTP.Request someRequest = new HTTP.Request("post", "http://ghostgrab.ddns.net:5001/addUser", data);
-       someRequest.Send((request) => {
+        HTTP.Request someRequest = new HTTP.Request("post", "http://ghostgrab.ddns.net:5001/addUser", data);
+        someRequest.Send((request) => {
            // parse some JSON, for example:
            bool result = false;
            Hashtable thing = (Hashtable)JSON.JsonDecode(request.response.Text, ref result);
@@ -37,15 +37,14 @@ public class sendname : MonoBehaviour {
 	void Update () {
 	
 	}
-IEnumerator GetText()
-{
-    var bodyData = "{ 'name': 'Test' }";
-    var postData = System.Text.Encoding.UTF8.GetBytes(bodyData);
-    using (UnityWebRequest req = UnityWebRequest.Post("ghostgrab.ddns.net:5001/addUser", bodyData))
-    {
-        yield return req.Send();
-        // ...
-    }
 
-}
+	IEnumerator GetText()
+	{
+    	var bodyData = "{ 'name': 'Test' }";
+    	var postData = System.Text.Encoding.UTF8.GetBytes(bodyData);
+		using (UnityWebRequest req = UnityWebRequest.Post("http://ghostgrab.ddns.net:5001/addUser", bodyData))
+    	{
+        	yield return req.Send();
+    	}
+	}
 }
