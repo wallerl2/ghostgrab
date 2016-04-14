@@ -3,7 +3,7 @@
 var http = require('http');
 var dispatcher = require('httpdispatcher');
 
-const PORT=5001;
+var PORT=5001;
 
 var milesPerDegreeLatitudeInFeet = 364560;
 
@@ -156,12 +156,17 @@ dispatcher.onPost("/move", function(req, res) {
 });
 
 // update leaderboard
-dispatcher.onPost("/updateLeaderboard", function(req, res) {
-    for (var i = 0; i < leaderboard.length; ++i) {
-        if(leaderboard[i] === JSON.parse(req.body).owner_id) {
-            leaderboard[i].score = JSON.parse(req.body).score;
-        }
+dispatcher.onPost("/updateleaderboard", function(req, res) {
+
+    var topTenNamesAndScores = [];
+
+    for(var [key, value] of myMap){
+        topTenNamesAndScores.push({key, value});
+        topTenNamesAndScores.sort(function({k1,v1}, {k2,v2}){
+            return (v2 - v1);
+        });
     }
+    res.end(JSON.stringify(topTenNamesAndScores.slice(0,9)));
     res.end('Got Post Data');
 });
 
