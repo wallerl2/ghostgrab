@@ -3,7 +3,7 @@
 var http = require('http');
 var dispatcher = require('httpdispatcher');
 
-const PORT=5001;
+var PORT=5001;
 
 var milesPerDegreeLatitudeInFeet = 364560;
 
@@ -37,10 +37,10 @@ var ghostTypes = [
 
 //initial array of ghosts
 var ghosts = [
-    {type_id: 996, instance_id: 555, owner_id: undefined, location_x: 555.5555555, location_y: 555.5555555},
-    {type_id: 997, instance_id: 556, owner_id: undefined, location_x: 555.5555555, location_y: 555.5555555},
-    {type_id: 998, instance_id: 557, owner_id: undefined, location_x: 555.5555555, location_y: 555.5555555},
-    {type_id: 999, instance_id: 558, owner_id: undefined, location_x: 555.5555555, location_y: 555.5555555}
+    {"type_id": 996, "instance_id": 555, "owner_id": undefined, "location_x": 555.5555555, "location_y": 555.5555555},
+    {"type_id": 997, "instance_id": 556, "owner_id": undefined, "location_x": 555.5555555, "location_y": 555.5555555},
+    {"type_id": 998, "instance_id": 557, "owner_id": undefined, "location_x": 555.5555555, "location_y": 555.5555555},
+    {"type_id": 999, "instance_id": 558, "owner_id": undefined, "location_x": 555.5555555, "location_y": 555.5555555}
 ];
 
 var userLastKnownLocations = [
@@ -121,7 +121,7 @@ dispatcher.onPost("/catchghost", function(req, res){
 
 //invoke this post to get an array of the current ghost locations
 dispatcher.onGet("/getupdatedghostlocations", function(req, res){
-    res.end(ghosts.toString());
+    res.end(JSON.stringify(ghosts));
 });
 
 
@@ -156,15 +156,20 @@ dispatcher.onPost("/move", function(req, res) {
 });
 
 // update leaderboard
-dispatcher.onPost("/updateLeaderboard", function(req, res) {
-    for (var i = 0; i < leaderboard.length; ++i) {
-        if(leaderboard[i] === req.body.owner_id) {
-            leaderboard[i].score = req.body.score;
-        }
-    }
+dispatcher.onPost("/updateleaderboard", function(req, res) {
+    var topTenNamesAndScores = [];
 
-    res.writeHead(200, {'Content-Type': 'text/plain'});
-    res.end('Got Post Data');
+    for(var key in myMap){
+    	console.log("test");
+    	console.log(key + '/n');
+    	console.log(myMap.get(key));
+        topTenNamesAndScores.push([key, myMap.get(key)]);
+        topTenNamesAndScores.sort(function(a, b){
+            return (b[1] - a[1]);
+        });
+    }
+    console.log(topTenNamesAndScores.slice(0,9));
+    res.end(JSON.stringify(topTenNamesAndScores.slice(0,9)));
 });
 
 // create a server
