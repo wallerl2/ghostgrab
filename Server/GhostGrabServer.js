@@ -37,10 +37,10 @@ var ghostTypes = [
 
 //initial array of ghosts
 var ghosts = [
-    {type_id: 996, instance_id: 555, owner_id: undefined, location_x: 555.5555555, location_y: 555.5555555},
-    {type_id: 997, instance_id: 556, owner_id: undefined, location_x: 555.5555555, location_y: 555.5555555},
-    {type_id: 998, instance_id: 557, owner_id: undefined, location_x: 555.5555555, location_y: 555.5555555},
-    {type_id: 999, instance_id: 558, owner_id: undefined, location_x: 555.5555555, location_y: 555.5555555}
+    {"type_id": 996, "instance_id": 555, "owner_id": undefined, "location_x": 555.5555555, "location_y": 555.5555555},
+    {"type_id": 997, "instance_id": 556, "owner_id": undefined, "location_x": 555.5555555, "location_y": 555.5555555},
+    {"type_id": 998, "instance_id": 557, "owner_id": undefined, "location_x": 555.5555555, "location_y": 555.5555555},
+    {"type_id": 999, "instance_id": 558, "owner_id": undefined, "location_x": 555.5555555, "location_y": 555.5555555}
 ];
 
 var userLastKnownLocations = [
