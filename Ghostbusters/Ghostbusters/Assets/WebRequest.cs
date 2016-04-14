@@ -23,19 +23,19 @@ public class WebRequest : MonoBehaviour {
 
         data.Add("name", "Test");
 
-        HTTP.Request someRequest2 = new HTTP.Request("post", "http://ghostgrab.ddns.net:5001/addUser", data);
+        HTTP.Request someRequest2 = new HTTP.Request("post", "http://ghostgrab.ddns.net:5001/adduser", data);
         someRequest2.Send((request) => {
             // parse some JSON, for example:
-            bool result = false;
-            Hashtable thing = (Hashtable)JSON.JsonDecode(request.response.Text, ref result);
+           // bool result = false;
+            //Hashtable thing = (Hashtable)JSON.JsonDecode(request.response.Text, ref result);
             String str = request.response.Text;
             UnityEngine.Debug.Log("POST");
             UnityEngine.Debug.Log(str);
-            if (!result)
+            /**if (!result)
             {
                 UnityEngine.Debug.Log("Could not parse JSON response!");
                 return;
-            }
+            } **/
         });
 
     }
