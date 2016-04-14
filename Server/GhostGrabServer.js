@@ -160,10 +160,17 @@ dispatcher.onPost("/updateleaderboard", function(req, res) {
 
     var topTenNamesAndScores = [];
 
+<<<<<<< Updated upstream
     for(var key in myMap){
         topTenNamesAndScores.push([key, myMap.get(key)]);
         topTenNamesAndScores.sort(function(a, b){
             return (b[1] - a[1]);
+=======
+    for(var key, value of myMap){
+        topTenNamesAndScores.push({key, value});
+        topTenNamesAndScores.sort(function({k1,v1}, {k2,v2}){
+            return (v2 - v1);
+>>>>>>> Stashed changes
         });
     }
     res.end(JSON.stringify(topTenNamesAndScores.slice(0,9)));
