@@ -121,7 +121,7 @@ dispatcher.onPost("/catchghost", function(req, res){
 
 //invoke this post to get an array of the current ghost locations
 dispatcher.onGet("/getupdatedghostlocations", function(req, res){
-    res.end(ghosts.toString());
+    res.end(JSON.stringify(ghosts));
 });
 
 
