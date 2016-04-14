@@ -157,17 +157,14 @@ dispatcher.onPost("/move", function(req, res) {
 
 // update leaderboard
 dispatcher.onPost("/updateleaderboard", function(req, res) {
-
     var topTenNamesAndScores = [];
 
     myMap.forEach(function(value, key){
         topTenNamesAndScores.push([value,key]);
     })
     topTenNamesAndScores.sort();
-    topTenNamesAndScores.slice(0,10);
 
     res.end(JSON.stringify(topTenNamesAndScores.slice(0,9)));
-    res.end('Got Post Data');
 });
 
 // create a server
