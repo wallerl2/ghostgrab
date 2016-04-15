@@ -98,14 +98,36 @@ dispatcher.setStatic('resources');
 
 //call this to add a user
 dispatcher.onPost("/adduser", function(req, res){
-    myMap.set(JSON.parse(req.body).name, 0); //add pair <name, 0> to the map
+    // add to user map
+    myMap.set(JSON.parse(req.body).name, 0);
+
+    console.log("Added new user: " + JSON.parse(req.body).name + " = " + "0");
+    
+    // print out all users to console for tracking purposes
+    console.log("\nActive Users: ");
     myMap.forEach(function(value, key) {
   		console.log(key + " = " + value);
 	}, myMap)
-    res.end(JSON.parse(req.body).name + " successfully added with 0 ghosts caught.");
+	
+    res.end("Success!");
 });
 
-//call this to indicate a ghost caught
+// update leaderboard
+dispatcher.onPost("/updateleaderboard", function(req, res) {
+    // update user map and sort
+    var topTenNamesAndScores = [];
+    myMap.forEach(function(value, key){
+        topTenNamesAndScores.push([key, value]);
+    })
+    topTenNamesAndScores.sort();
+
+	console.log("Dispatching the following scores: " + JSON.stringify(topTenNamesAndScores.slice(0,9)));
+
+    // send the top 10 users to client
+    res.end(JSON.stringify(topTenNamesAndScores.slice(0,9)));
+});
+
+// call this to indicate a ghost caught
 dispatcher.onPost("/catchghost", function(req, res){
     var ghostCatcherName = JSON.parse(req.body).name;
     var currentGhostCatcherPower = myMap.get(ghostCatcherName);
@@ -155,22 +177,10 @@ dispatcher.onPost("/move", function(req, res) {
     res.end('Ghost moved to new location');
 });
 
-// update leaderboard
-dispatcher.onPost("/updateleaderboard", function(req, res) {
-    var topTenNamesAndScores = [];
-
-    myMap.forEach(function(value, key){
-        topTenNamesAndScores.push([value,key]);
-    })
-    topTenNamesAndScores.sort();
-
-    res.end(JSON.stringify(topTenNamesAndScores.slice(0,9)));
-});
-
-// create a server
+// create server
 var server = http.createServer(handleRequest);
 
-// start the server
+// start server
 server.listen(PORT, function(){
     console.log("Server listening on PORT: " + PORT);
 });
