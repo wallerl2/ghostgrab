@@ -19,12 +19,10 @@ public class GetLeaderboard : MonoBehaviour {
             String response = request.response.Text;
 
             UnityEngine.Debug.Log("POST");
-            UnityEngine.Debug.Log(response);
 
 			// remove all brackets
 			response = response.Replace("[", "");
 			response = response.Replace("]", "");
-			UnityEngine.Debug.Log(response);
 
 			// split on commas
 			char[] comma = {','};
@@ -33,21 +31,19 @@ public class GetLeaderboard : MonoBehaviour {
 			// update leaderboard
 			int editsToMake = splitResponse.Length;
 			int counter = 0;
-			int location = 0;
 			foreach(Transform t in transform) {
 				Text[] texts = t.GetComponentsInChildren<Text>();
 
 				if (counter < editsToMake) {
-					texts[0].text = "#" + counter;
-					texts[1].text = splitResponse[location];
-					texts[2].text = "Score: " + splitResponse [location + 1];
+					texts[0].text = "#" + (counter/2 + 1).ToString();
+					texts[1].text = splitResponse[counter].Substring(1,splitResponse[counter].Length - 2);
+					texts[2].text = "Score: " + splitResponse [counter + 1];
 				} else {
-					texts[0].text = "#" + counter;
+					texts[0].text = "#" + (counter/2 + 1).ToString();
 					texts[1].text = "No User";
 					texts[2].text = "Score: N/A";
 				}
-				counter += 1;
-				location += 2;
+				counter += 2;
 			}
         });
        
