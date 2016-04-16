@@ -127,6 +127,14 @@ dispatcher.onPost("/updateleaderboard", function(req, res) {
     res.end(JSON.stringify(topTenNamesAndScores.slice(0,9)));
 });
 
+
+
+
+
+
+
+
+
 // call this to indicate a ghost caught
 dispatcher.onPost("/catchghost", function(req, res){
     var ghostCatcherName = JSON.parse(req.body).name;
@@ -142,7 +150,7 @@ dispatcher.onPost("/catchghost", function(req, res){
 });
 
 //invoke this post to get an array of the current ghost locations
-dispatcher.onGet("/getupdatedghostlocations", function(req, res){
+dispatcher.onGet("/getupdatedghosts", function(req, res){
     res.end(JSON.stringify(ghosts));
 });
 
