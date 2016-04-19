@@ -14,12 +14,33 @@ var constB = 2640, constA = 500;
 function feetToDMSLatitude(feet){ return feet/milesPerDegreeLatitudeInFeet; }
 function latitudeToFeet(latitudeInDMS){ return latitudeInDMS * milesPerDegreeLatitudeInFeet; }
 
+//array that contains all of the ghost types and info
+var ghostTypes = [
+    {name: "Smitty Werbenmanjensen", type_id: 996, power: 100, flavor_text: "He was number 1", catch_rate: 10},
+    {name: "Copyright Infringement", type_id: 997, power: 90, flavor_text: "This ghost has been removed at the request of the copyright holder", catch_rate: 20},
+    {name: "John Cena-fterlife", type_id: 998, power: 80, flavor_text: "Da dah dawh dah!!!", catch_rate: 30},
+    {name: "Oozi", type_id: 999, power: 70, flavor_text: "His 9x19mm parabellum slime is sure to ruin your day", catch_rate: 40},
+    {name: "Haunt Solo", type_id: 1000, power: 60, flavor_text: "Spoiler Alert...he's dead.", catch_rate: 50},
+    {name: "Retro Spook", type_id: 1001, power: 50, flavor_text: "Shy and doesn't like to be looked at", catch_rate: 60},
+    {name: "Haunted Rock", type_id: 1002, power: 40, flavor_text: "Totally haunted, I swear.", catch_rate: 70},
+    {name: "The Stay-Buf'd Marshmallow Man", type_id: 1003, power: 30, flavor_text: "His muscles have muscles!", catch_rate: 80},
+    {name: "Windows ME", type_id: 1004, power: 20, flavor_text: "Rest in peace.", catch_rate: 90},
+    {name: "Livingstone's Reanimated Corpse", type_id: 1005, power: 10, flavor_text: "Dr. Livingstone's bones, I presume?", catch_rate: 95},
+    {name: "Last Night's Leftovers", type_id: 1006, power: 5, flavor_text: "This gruel is grueling.", catch_rate: 99},
+    {name: "Route 66 Roadkill", type_id: 1006, power: 1, flavor_text: "Flatter than the Arizona desert and just as dehydrated.", catch_rate: 100},
+    {name: "Inhuman Torch", type_id: 1007, power: 60, flavor_text: "Flame oooohaaaaahhhnn", catch_rate: 60},
+    {name: "Roller Ghost-er", type_id: 1008, power: 50, flavor_text: "Frightfully exciting", catch_rate: 40},
+    {name: "Terror-dactyl", type_id: 1009, power: 90, flavor_text: "Death from above", catch_rate: 20},
+    {name: "Boo-ster Shot", type_id: 1010, power: 30, flavor_text: "The Teta-next Level of Terror", catch_rate: 60},
+    {name: "Dreaded Wheat", type_id: 1011, power: 20, flavor_text: "A flavorless cereal that scrubs your GI tract", catch_rate: 70},
+];
+
 // array of ghosts
 var ghosts = [
-    {"type_id": 1, "location_x": 555.5555555, "location_y": 555.5555555},
-    {"type_id": 2, "location_x": 555.5555555, "location_y": 555.5555555},
-    {"type_id": 3, "location_x": 555.5555555, "location_y": 555.5555555},
-    {"type_id": 4, "location_x": 555.5555555, "location_y": 555.5555555}
+    {"type_id": 996, "instance_id": 555, "owner_id": undefined, "location_x": 555.5555555, "location_y": 555.5555555},
+    {"type_id": 997, "instance_id": 556, "owner_id": undefined, "location_x": 555.5555555, "location_y": 555.5555555},
+    {"type_id": 998, "instance_id": 557, "owner_id": undefined, "location_x": 555.5555555, "location_y": 555.5555555},
+    {"type_id": 999, "instance_id": 558, "owner_id": undefined, "location_x": 555.5555555, "location_y": 555.5555555}
 ];
 
 /**
