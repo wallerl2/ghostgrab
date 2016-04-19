@@ -16,7 +16,7 @@ function latitudeToFeet(latitudeInDMS){ return latitudeInDMS * milesPerDegreeLat
 
 // array of ghosts
 var ghosts = [
-    {"type_id": 1, "location_x": 555.5555555, "location_y": 555.5555555},
+    {"type_id": 8, "location_x": 36.14465, "location_y": -86.80328},
     {"type_id": 2, "location_x": 555.5555555, "location_y": 555.5555555},
     {"type_id": 3, "location_x": 555.5555555, "location_y": 555.5555555},
     {"type_id": 4, "location_x": 555.5555555, "location_y": 555.5555555}
