@@ -122,7 +122,11 @@ dispatcher.onPost("/updateleaderboard", function(req, res) {
     myMap.forEach(function(value, key){
         topTenNamesAndScores.push([key, value]);
     })
-    topTenNamesAndScores.sort();
+    topTenNamesAndScores.sort(
+        function(a,b){
+            return (b[1] - a[1]);
+        }
+    );
 
 	console.log("Dispatching the following scores: " + JSON.stringify(topTenNamesAndScores.slice(0,9)));
 
