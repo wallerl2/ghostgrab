@@ -35,7 +35,7 @@ var ghostTypes = [
     {name: "Dreaded Wheat", type_id: 1011, power: 20, flavor_text: "A flavorless cereal that scrubs your GI tract", catch_rate: 70},
 ];
 
-//initial array of ghosts
+// array of ghosts
 var ghosts = [
     {"type_id": 996, "instance_id": 555, "owner_id": undefined, "location_x": 555.5555555, "location_y": 555.5555555},
     {"type_id": 997, "instance_id": 556, "owner_id": undefined, "location_x": 555.5555555, "location_y": 555.5555555},
@@ -43,6 +43,7 @@ var ghosts = [
     {"type_id": 999, "instance_id": 558, "owner_id": undefined, "location_x": 555.5555555, "location_y": 555.5555555}
 ];
 
+/**
 var userLastKnownLocations = [
 ];
 
@@ -78,6 +79,8 @@ function moveGhost(ghost_type_id, ghost_instance_id){
     }
 }
 
+*/
+
 //map to store the users
 var myMap = new Map();
 
@@ -100,7 +103,7 @@ dispatcher.setStatic('resources');
 dispatcher.onPost("/adduser", function(req, res){
     // add to user map
     myMap.set(JSON.parse(req.body).name, 0);
-
+    console.log(req.body);
     console.log("Added new user: " + JSON.parse(req.body).name + " = " + "0");
     
     // print out all users to console for tracking purposes
@@ -127,14 +130,6 @@ dispatcher.onPost("/updateleaderboard", function(req, res) {
     res.end(JSON.stringify(topTenNamesAndScores.slice(0,9)));
 });
 
-
-
-
-
-
-
-
-
 // call this to indicate a ghost caught
 dispatcher.onPost("/catchghost", function(req, res){
     var ghostCatcherName = JSON.parse(req.body).name;
@@ -154,7 +149,7 @@ dispatcher.onGet("/getupdatedghosts", function(req, res){
     res.end(JSON.stringify(ghosts));
 });
 
-
+/**
 // add a ghost
 dispatcher.onPost("/add", function(req, res) {
     ghosts.push(req.body);
@@ -162,7 +157,8 @@ dispatcher.onPost("/add", function(req, res) {
     res.writeHead(200, {'Content-Type': 'text/plain'});
     res.end('Got Post Data');
 });
-
+*/
+ 
 // remove a ghost
 dispatcher.onPost("/remove", function(req, res) {
     for (var i = 0; i < ghosts.length; ++i) {
@@ -174,6 +170,7 @@ dispatcher.onPost("/remove", function(req, res) {
     res.end('Got Post Data');
 });
 
+/**
 // move a ghost that was not successfully captured
 dispatcher.onPost("/move", function(req, res) {
     for (var i = 0; i < ghosts.length; ++i) {
@@ -184,6 +181,7 @@ dispatcher.onPost("/move", function(req, res) {
     res.writeHead(200, {'Content-Type': 'text/plain'});
     res.end('Ghost moved to new location');
 });
+ */
 
 // create server
 var server = http.createServer(handleRequest);

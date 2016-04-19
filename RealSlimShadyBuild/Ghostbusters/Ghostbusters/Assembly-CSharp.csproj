@@ -3,9 +3,8 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>10.0.20506</ProductVersion>
+    <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <RootNamespace></RootNamespace>
     <ProjectGuid>{2B1369AE-B7DB-B744-7A53-B3AC4D67EFBB}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
@@ -34,48 +33,49 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
-    <Reference Include="System.XML" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="UnityEngine">
-      <HintPath>/Applications/Unity/Unity.app/Contents/Frameworks/Managed/UnityEngine.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\Applications\Unity\Unity.app\Contents\Frameworks\Managed\UnityEngine.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor">
-      <HintPath>/Applications/Unity/Unity.app/Contents/Frameworks/Managed/UnityEditor.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\Applications\Unity\Unity.app\Contents\Frameworks\Managed\UnityEditor.dll</HintPath>
     </Reference>
+    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\FindGhosts.cs" />
-     <Compile Include="Assets\FuckingWebGarbage\CookieJar.cs" />
-     <Compile Include="Assets\FuckingWebGarbage\DiskCache.cs" />
-     <Compile Include="Assets\FuckingWebGarbage\FormDataStream.cs" />
-     <Compile Include="Assets\FuckingWebGarbage\JSON.cs" />
-     <Compile Include="Assets\FuckingWebGarbage\JSONObject.cs" />
-     <Compile Include="Assets\FuckingWebGarbage\Request.cs" />
-     <Compile Include="Assets\FuckingWebGarbage\Response.cs" />
-     <Compile Include="Assets\FuckingWebGarbage\ResponseCallbackDispatcher.cs" />
-     <Compile Include="Assets\FuckingWebGarbage\StreamedWWWForm.cs" />
-     <Compile Include="Assets\FuckingWebGarbage\WebRequest.cs" />
-     <Compile Include="Assets\FuckingWebGarbage\sendname.cs" />
-     <Compile Include="Assets\GetLeaderboard.cs" />
-     <Compile Include="Assets\Scripts\Ghost.cs" />
-     <Compile Include="Assets\Scripts\GhostDetected.cs" />
-     <Compile Include="Assets\Scripts\GhostDex.cs" />
-     <Compile Include="Assets\Scripts\GhostDexDisplay.cs" />
-     <Compile Include="Assets\Scripts\GoToUserScreen.cs" />
-     <Compile Include="Assets\Scripts\LocationTest.cs" />
-     <Compile Include="Assets\Scripts\NameManager.cs" />
-     <Compile Include="Assets\Scripts\ScoreDisplay.cs" />
-     <Compile Include="Assets\Scripts\SubmitName.cs" />
- <Reference Include="UnityEngine.Networking">
- <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/Networking/UnityEngine.Networking.dll</HintPath>
- </Reference>
- <Reference Include="UnityEngine.UI">
- <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
- </Reference>
- <Reference Include="Ionic.Zlib.CF">
- <HintPath>/Users/Dev/ghostgrab/RealSlimShadyBuild/Ghostbusters/Ghostbusters/Assets/FuckingWebGarbage/Ionic.Zlib.CF.dll</HintPath>
- </Reference>
+    <Compile Include="Assets\FindGhosts.cs" />
+    <Compile Include="Assets\FuckingWebGarbage\CookieJar.cs" />
+    <Compile Include="Assets\FuckingWebGarbage\DiskCache.cs" />
+    <Compile Include="Assets\FuckingWebGarbage\FormDataStream.cs" />
+    <Compile Include="Assets\FuckingWebGarbage\JSON.cs" />
+    <Compile Include="Assets\FuckingWebGarbage\JSONObject.cs" />
+    <Compile Include="Assets\FuckingWebGarbage\Request.cs" />
+    <Compile Include="Assets\FuckingWebGarbage\Response.cs" />
+    <Compile Include="Assets\FuckingWebGarbage\ResponseCallbackDispatcher.cs" />
+    <Compile Include="Assets\FuckingWebGarbage\StreamedWWWForm.cs" />
+    <Compile Include="Assets\FuckingWebGarbage\WebRequest.cs" />
+    <Compile Include="Assets\FuckingWebGarbage\sendname.cs" />
+    <Compile Include="Assets\GetLeaderboard.cs" />
+    <Compile Include="Assets\Scripts\DoesScoreUpdateWork.cs" />
+    <Compile Include="Assets\Scripts\Ghost.cs" />
+    <Compile Include="Assets\Scripts\GhostDetected.cs" />
+    <Compile Include="Assets\Scripts\GhostDex.cs" />
+    <Compile Include="Assets\Scripts\GhostDexDisplay.cs" />
+    <Compile Include="Assets\Scripts\GoToUserScreen.cs" />
+    <Compile Include="Assets\Scripts\LocationTest.cs" />
+    <Compile Include="Assets\Scripts\NameManager.cs" />
+    <Compile Include="Assets\Scripts\ScoreDisplay.cs" />
+    <Compile Include="Assets\Scripts\SubmitName.cs" />
+    <Reference Include="UnityEngine.Networking">
+      <HintPath>..\..\..\..\..\..\Applications\Unity\Unity.app\Contents\UnityExtensions\Unity\Networking\UnityEngine.Networking.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UI">
+      <HintPath>..\..\..\..\..\..\Applications\Unity\Unity.app\Contents\UnityExtensions\Unity\GUISystem\UnityEngine.UI.dll</HintPath>
+    </Reference>
+    <Reference Include="Ionic.Zlib.CF">
+      <HintPath>Assets\FuckingWebGarbage\Ionic.Zlib.CF.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
@@ -85,5 +85,7 @@
   <Target Name="AfterBuild">
   </Target>
   -->
-  
+  <ItemGroup>
+    <Folder Include="Assets\Scripts\" />
+  </ItemGroup>
 </Project>
