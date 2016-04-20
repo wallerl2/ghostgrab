@@ -92,8 +92,8 @@ dispatcher.onGet("/getupdatedghosts", function(req, res){
 // remove a ghost
 dispatcher.onPost("/remove", function(req, res) {
     for (var i = 0; i < ghosts.length; ++i) {
-        if(ghosts[i] === req.body) {
-            ghosts[i].pop();
+        if(ghosts[i].type_id === JSON.parse(req.body).id) {
+            ghosts.splice(i,1);
         }
     }
     res.writeHead(200, {'Content-Type': 'text/plain'});
