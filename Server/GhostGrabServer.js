@@ -3,7 +3,7 @@
 var http = require('http');
 var dispatcher = require('httpdispatcher');
 
-var PORT=5001;
+var PORT=5002;
 
 var milesPerDegreeLatitudeInFeet = 364560;
 
