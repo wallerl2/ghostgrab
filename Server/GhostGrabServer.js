@@ -22,6 +22,44 @@ var ghosts = [
     {"type_id": 4, "location_x": 555.5555555, "location_y": 555.5555555}
 ];
 
+/**
+var userLastKnownLocations = [
+];
+
+//return a random ghost to spawn
+function randomGhost(){
+    return ghostTypes[(Math.random() * (ghostTypes.length - 1) + 1)];
+}
+
+//this function moves around the ghosts
+function generate() {
+    for (var ghost in ghosts){
+        if(ghost.owner_id !== undefined){
+            ghost = {};
+        }
+        else{
+            moveGhost(ghost.type_id, ghost.instance_id);
+        }
+    }
+    for (var loc in userLastKnownLocations){
+        var ghostTyp = randomGhost(); //generate a random ghost type
+        ghosts.push();
+        moveGhost(ghost_type_id, ghost_instance_id)
+    }
+}
+
+//Reset ghost location to random location within B = 1/2 mile (2640 ft) but not within A = 500 ft
+function moveGhost(ghost_type_id, ghost_instance_id){
+    for (var ghost in ghosts){
+        if((ghost.type_id === ghost_type_id)&&(ghost.instance_id === ghost_instance_id)){
+            ghost.location_x = feetToDMSLatitude(Math.random() * (constB - constA) + constA);
+            ghost.location_y = feetToDMSLatitude(Math.random() * (constB - constA) + constA);
+        }
+    }
+}
+
+*/
+
 //map to store the users
 var myMap = new Map();
 
@@ -63,11 +101,7 @@ dispatcher.onPost("/updateleaderboard", function(req, res) {
     myMap.forEach(function(value, key){
         topTenNamesAndScores.push([key, value]);
     })
-    topTenNamesAndScores.sort(
-        function(a,b){
-            return (b[1] - a[1]);
-        }
-    );
+    topTenNamesAndScores.sort();
 
 	console.log("Dispatching the following scores: " + JSON.stringify(topTenNamesAndScores.slice(0,9)));
 
@@ -79,15 +113,30 @@ dispatcher.onPost("/updateleaderboard", function(req, res) {
 dispatcher.onPost("/catchghost", function(req, res){
     var ghostCatcherName = JSON.parse(req.body).name;
     var currentGhostCatcherPower = myMap.get(ghostCatcherName);
-    var points = JSON.parse(req.body).points;
-    
-    myMap.set(ghostCatcherName, points + currentGhostCatcherPower);
+    var ghostCaught = JSON.parse(req.body).ghostName;
+
+    for(var ghost in ghosts){
+        if(ghost.name === ghostCaught) {
+            myMap.set(ghostCatcherName, ghost.power + currentGhostCatcherPower);
+            break;
+        }
+    }
 });
 
 //invoke this post to get an array of the current ghost locations
 dispatcher.onGet("/getupdatedghosts", function(req, res){
     res.end(JSON.stringify(ghosts));
 });
+
+/**
+// add a ghost
+dispatcher.onPost("/add", function(req, res) {
+    ghosts.push(req.body);
+    console.log("test");
+    res.writeHead(200, {'Content-Type': 'text/plain'});
+    res.end('Got Post Data');
+});
+*/
  
 // remove a ghost
 dispatcher.onPost("/remove", function(req, res) {
@@ -99,6 +148,19 @@ dispatcher.onPost("/remove", function(req, res) {
     res.writeHead(200, {'Content-Type': 'text/plain'});
     res.end('Got Post Data');
 });
+
+/**
+// move a ghost that was not successfully captured
+dispatcher.onPost("/move", function(req, res) {
+    for (var i = 0; i < ghosts.length; ++i) {
+        if(ghosts[i] === req.body) {
+            moveGhost(ghosts[i].type_id, ghost[i].instance_id);
+        }
+    }
+    res.writeHead(200, {'Content-Type': 'text/plain'});
+    res.end('Ghost moved to new location');
+});
+ */
 
 // create server
 var server = http.createServer(handleRequest);
