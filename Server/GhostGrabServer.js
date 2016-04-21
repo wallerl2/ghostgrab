@@ -19,7 +19,7 @@ var ghosts = [
     {"type_id": 8, "location_x": 36.1457, "location_y": -86.8034},
     {"type_id": 2, "location_x": 555.5555555, "location_y": 555.5555555},
     {"type_id": 3, "location_x": 555.5555555, "location_y": 555.5555555},
-    {"type_id": 4, "location_x": 555.5555555, "location_y": 555.5555555}
+    {"type_id": 5, "location_x": 555.5555555, "location_y": 555.5555555}
 ];
 
 //map to store the users
